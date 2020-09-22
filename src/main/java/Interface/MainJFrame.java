@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Interface;
-import Business.Product;
+import Business.VitalSignHistory;
 /**
  *
  * @author karthik
@@ -14,10 +14,10 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private Product product;
+    private VitalSignHistory vsh;
     public MainJFrame() {
         initComponents();
-        product=new Product();
+        vsh = new VitalSignHistory();
     }
 
     /**
@@ -30,89 +30,92 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        splitPane = new javax.swing.JSplitPane();
-        controlJPanel = new javax.swing.JPanel();
-        createButton = new javax.swing.JButton();
-        viewButton = new javax.swing.JButton();
-        displayJPanel = new javax.swing.JPanel();
+        SplitPane = new javax.swing.JSplitPane();
+        leftJPanel = new javax.swing.JPanel();
+        btnCreate = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
+        rightJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        createButton.setText("Create");
-        createButton.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate.setText("Create Vital Sign");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonActionPerformed(evt);
+                btnCreateActionPerformed(evt);
             }
         });
 
-        viewButton.setText("View");
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
+        btnView.setText("View Vital Signs");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
+                btnViewActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout controlJPanelLayout = new javax.swing.GroupLayout(controlJPanel);
-        controlJPanel.setLayout(controlJPanelLayout);
-        controlJPanelLayout.setHorizontalGroup(
-            controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createButton)
-                    .addComponent(viewButton))
-                .addContainerGap(19, Short.MAX_VALUE))
+        javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
+        leftJPanel.setLayout(leftJPanelLayout);
+        leftJPanelLayout.setHorizontalGroup(
+            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCreate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
-        controlJPanelLayout.setVerticalGroup(
-            controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(controlJPanelLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(createButton)
-                .addGap(18, 18, 18)
-                .addComponent(viewButton)
-                .addContainerGap(145, Short.MAX_VALUE))
-        );
-
-        splitPane.setLeftComponent(controlJPanel);
-
-        javax.swing.GroupLayout displayJPanelLayout = new javax.swing.GroupLayout(displayJPanel);
-        displayJPanel.setLayout(displayJPanelLayout);
-        displayJPanelLayout.setHorizontalGroup(
-            displayJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
-        );
-        displayJPanelLayout.setVerticalGroup(
-            displayJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+        leftJPanelLayout.setVerticalGroup(
+            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftJPanelLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(btnCreate)
+                .addGap(73, 73, 73)
+                .addComponent(btnView)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        splitPane.setRightComponent(displayJPanel);
+        SplitPane.setLeftComponent(leftJPanel);
+
+        javax.swing.GroupLayout rightJPanelLayout = new javax.swing.GroupLayout(rightJPanel);
+        rightJPanel.setLayout(rightJPanelLayout);
+        rightJPanelLayout.setHorizontalGroup(
+            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 431, Short.MAX_VALUE)
+        );
+        rightJPanelLayout.setVerticalGroup(
+            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 385, Short.MAX_VALUE)
+        );
+
+        SplitPane.setRightComponent(rightJPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(SplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(SplitPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        CreateJPanel createPanel = new CreateJPanel(product);
-        splitPane.setRightComponent(createPanel);
-        
-    }//GEN-LAST:event_createButtonActionPerformed
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        CreateVitalJPanel createPanel = new CreateVitalJPanel(vsh);
+        SplitPane.setRightComponent(createPanel);
+    }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-       ViewJPanel viewPanel = new ViewJPanel(product);
-       splitPane.setRightComponent(viewPanel);
-       
-    }//GEN-LAST:event_viewButtonActionPerformed
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+          ViewVitalsJPanel viewPanel = new ViewVitalsJPanel(vsh);
+        SplitPane.setRightComponent(viewPanel);      
+    }//GEN-LAST:event_btnViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,11 +153,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel controlJPanel;
-    private javax.swing.JButton createButton;
-    private javax.swing.JPanel displayJPanel;
+    private javax.swing.JSplitPane SplitPane;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnView;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane splitPane;
-    private javax.swing.JButton viewButton;
+    private javax.swing.JPanel leftJPanel;
+    private javax.swing.JPanel rightJPanel;
     // End of variables declaration//GEN-END:variables
 }
