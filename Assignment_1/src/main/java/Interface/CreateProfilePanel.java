@@ -270,9 +270,9 @@ public class CreateProfilePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel39.setText("(.pdf .jpg file only)");
+        jLabel39.setText("(.pdf .png .jpg file only)");
 
-        jLabel40.setText("(.pdf .jpg file only)");
+        jLabel40.setText("(.pdf .png .jpg file only)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -349,7 +349,7 @@ public class CreateProfilePanel extends javax.swing.JPanel {
                                                 .addComponent(txtHealth))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jLabel31)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(txtSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jSeparator3))
                                         .addGap(21, 21, 21))
@@ -553,7 +553,7 @@ public class CreateProfilePanel extends javax.swing.JPanel {
                                     .addComponent(jLabel16)
                                     .addComponent(txtVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel18)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -624,14 +624,10 @@ public class CreateProfilePanel extends javax.swing.JPanel {
             String phoneRegex = "^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$";
         Pattern phonePattern = Pattern.compile(phoneRegex);       
         Matcher checkPhone = phonePattern.matcher(txtPhone.getText());
-        System.out.println("matcher ="+phonePattern.matcher(txtPhone.getText()));
-        System.out.println("Pattern = "+phonePattern);
         boolean checkPhoneMatch = checkPhone.matches();
         if(!(checkPhoneMatch == TRUE)){
             
             error="\nFor Phone number - Please enter only 10 digits!";
-            error+="\nPattern = "+phonePattern;
-            error+="\nPmatcher ="+phonePattern.matcher(txtPhone.getText());
         }
         }
         
@@ -870,7 +866,7 @@ public class CreateProfilePanel extends javax.swing.JPanel {
         fileChoose.showOpenDialog(null);
         File fingerf = fileChoose.getSelectedFile();
         String filename = fingerf.getAbsolutePath();
-        if(!((filename.toLowerCase().endsWith(".jpg")) || (filename.toLowerCase().endsWith(".pdf")) || (filename.toLowerCase().endsWith(".jpeg")))){
+        if(!((filename.toLowerCase().endsWith(".jpg")) || (filename.toLowerCase().endsWith(".pdf")) || (filename.toLowerCase().endsWith(".jpeg"))|| (filename.toLowerCase().endsWith(".png")))){
             JOptionPane.showMessageDialog(null,"FingerPrint upload must be of file type .pdf or .jpg only");
         }else{
         txtFingerPrint.setText(filename);
