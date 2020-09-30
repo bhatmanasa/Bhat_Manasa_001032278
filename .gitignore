@@ -1,2 +1,6 @@
 .DS_Store
 .README.md
+/Assignment_1/target/
+/APPLICATION/nbproject/private/
+/APPLICATION/build/
+/Application2/target/
