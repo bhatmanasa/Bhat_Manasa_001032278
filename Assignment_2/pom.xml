@@ -12,18 +12,6 @@
           <jackson.version>2.10.0</jackson.version>
     </properties>
     <dependencies>
-
-        <!--
-    <dependency>
-        <groupId>org.elasticsearch.client</groupId>
-        <artifactId>elasticsearch-rest-high-level-client</artifactId>
-        <version>7.6.1</version>
-    </dependency>-->
-    <dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>${jackson.version}</version>
-  </dependency>
     <dependency>
         <groupId>org.elasticsearch.client</groupId>
         <artifactId>elasticsearch-rest-client</artifactId>
@@ -34,12 +22,6 @@
         <artifactId>elasticsearch-rest-high-level-client</artifactId>
         <version>7.5.2</version>
     </dependency>
-    <!--
-    <dependency>
-        <groupId>org.elasticsearch.client</groupId>
-        <artifactId>elasticsearch</artifactId>
-        <version>7.6.1</version>
-    </dependency>  -->
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
