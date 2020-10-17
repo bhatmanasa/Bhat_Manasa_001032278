@@ -151,6 +151,8 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
            return;
            }
         product.setProdName(txtName.getText());
+           JOptionPane.showMessageDialog(null, "Product Saved Successfully!", "Warning", JOptionPane.INFORMATION_MESSAGE);            
+      
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtAvailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAvailActionPerformed

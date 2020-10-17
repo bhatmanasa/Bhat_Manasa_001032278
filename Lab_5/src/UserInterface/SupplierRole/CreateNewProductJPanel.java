@@ -96,6 +96,8 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
          JOptionPane.showMessageDialog(null, "Product Name, Price and Availability are mandatory to be filled!", "Warning", JOptionPane.INFORMATION_MESSAGE);            
          return;           
         }
+
+    
                 try{
         int avail = Integer.parseInt(txtAvailability.getText());
           }catch(Exception e){
