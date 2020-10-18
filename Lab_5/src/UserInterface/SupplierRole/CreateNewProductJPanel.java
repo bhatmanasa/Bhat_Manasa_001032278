@@ -1,6 +1,7 @@
 package UserInterface.SupplierRole;
 
 import Business.Product;
+import Business.ProductCatalog;
 import Business.Supplier;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -96,6 +97,12 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
          JOptionPane.showMessageDialog(null, "Product Name, Price and Availability are mandatory to be filled!", "Warning", JOptionPane.INFORMATION_MESSAGE);            
          return;           
         }
+        
+        Product prodCheck = supplier.getProductCatalog().searchProductName(txtName.getText());
+        if(!(prodCheck == null)){
+              JOptionPane.showMessageDialog(null, "Product already exists!", "Warning", JOptionPane.INFORMATION_MESSAGE);            
+              return;       
+        }
 
     
                 try{
@@ -124,6 +131,9 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
            
         }
         JOptionPane.showMessageDialog(null, "Product added!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        txtName.setText("");
+        txtPrice.setText("");
+        txtAvailability.setText("");
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

@@ -44,4 +44,12 @@ public class ProductCatalog {
         }
         return null;
     }
+        public Product searchProductName(String id){
+        for (Product product : productCatalog) {
+            if(product.getProdName().equalsIgnoreCase(id)){
+                return product;
+            }
+        }
+        return null;
+    }
 }
