@@ -11,6 +11,8 @@ package lab7.analytics;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lab7.entities.Comment;
@@ -104,4 +106,51 @@ public class AnalysisHelper {
        // System.out.println(res);
             
     }
+      public void getInactiveUserBasedOnPosts(){
+           final Map<Integer,Integer> userPosts = new HashMap<Integer,Integer>();
+        Map<Integer,Integer> sortedUserPosts = new HashMap<Integer,Integer>();
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        int tempUser;
+        int postNum;
+        List<Integer> postsList = new ArrayList<Integer>();
+            for (Post p : posts.values()) {
+            tempUser = p.getUserId();
+            if(!(userPosts.containsKey(tempUser))){
+                postNum = 0;
+                for (Post post : posts.values()) {
+                    if(post.getUserId() == tempUser){
+                        postNum+=1;
+                    }
+                }
+                userPosts.put(tempUser, postNum);
+            }
+            }
+            for(int i = 0; i<userPosts.size();i++){
+                    postsList.add(userPosts.get(i));
+            }
+           Collections.sort(postsList);
+           System.out.println("userPosts="+userPosts);
+           System.out.println("\n--------------------------------------------------------\n");
+           System.out.println("Top 5 Inactive Users Based on Total Number Of Posts:\n");
+           int count =0;
+           for(int i=0; i<postsList.size(); i++){
+               if(i == 5){
+                   return;
+               }            
+           for (Integer key : userPosts.keySet()) {
+              
+               if(userPosts.get(key) == postsList.get(i)){
+                   if(!sortedUserPosts.containsKey(key)){
+                        count+=1;
+                     //   System.out.println("count="+count);
+                        if(count ==6){
+                            return;
+                        }
+                       System.out.println("User Id = "+key+" with no of posts = "+postsList.get(i));
+                   sortedUserPosts.put(key,postsList.get(i));
+                   }
+               }
+               }
+           }
+    } 
 }
