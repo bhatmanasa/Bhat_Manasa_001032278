@@ -72,5 +72,36 @@ public class AnalysisHelper {
         }
             
     }    
-    
+       public void getMostCommentedPost() {
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        int commentNumber = 0;
+        int highestComments = 0;
+        Post highestPost = null;
+        List<Post> highestPosts= new ArrayList<Post>();
+
+        for (Post p : posts.values()) {
+            commentNumber = 0;
+            List<Comment> comments = p.getComments();
+            commentNumber = comments.size();
+           // System.out.println("\nTEST:Posts:"+p+" with "+commentNumber+" number of comments");
+            if(highestComments < commentNumber){
+                highestComments = commentNumber;
+                highestPost = p;
+            }
+        }
+        System.out.println("\n--------------------------------------------------------\n");
+        String res = "";
+        for (Post p : posts.values()) {
+            commentNumber = 0;           
+            List<Comment> comments = p.getComments();
+            commentNumber = comments.size();
+           res+=("\nTEST:Posts:"+p+" with "+commentNumber);
+            if(highestComments == commentNumber){
+              highestPosts.add(p);
+              System.out.println("Post with highest comment:"+p);
+            }
+        }
+       // System.out.println(res);
+            
+    }
 }
