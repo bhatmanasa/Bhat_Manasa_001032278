@@ -33,6 +33,8 @@ public class UserAccountDirectory {
     }
     
     public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
+        UserAccount ua = authenticateUser(username, password);
+        if(ua == null){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
@@ -40,6 +42,9 @@ public class UserAccountDirectory {
         userAccount.setRole(role);
         userAccountList.add(userAccount);
         return userAccount;
+        }else{
+            return ua;
+        }
     }
     
     public boolean checkIfUsernameIsUnique(String username){

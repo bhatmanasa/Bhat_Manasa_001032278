@@ -7,10 +7,12 @@ package userinterface.CustomerRole;
 import Business.EcoSystem;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -20,17 +22,19 @@ import javax.swing.JPanel;
 public class RequestLabTestJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    
+    private EcoSystem business;
     private UserAccount userAccount;
+    private int workRequest;
     /**
      * Creates new form RequestLabTestJPanel
      */
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account) {
+    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem business,int w) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        
+        this.business = business;
         this.userAccount = account;
+        this.workRequest = w;
        
     }
 
@@ -81,8 +85,16 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        
-        
+        if(messageJTextField.getText().equals("")){
+         JOptionPane.showMessageDialog(null, "Please fill in the message for the request!!", "Warning", JOptionPane.WARNING_MESSAGE);
+             return;
+        }else{
+        for(WorkRequest workReq : userAccount.getWorkQueue().getWorkRequestList()){
+            if(workReq.getOrderNum() == workRequest){
+                workReq.setMessage(messageJTextField.getText());
+            }
+        }
+        }
         
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 

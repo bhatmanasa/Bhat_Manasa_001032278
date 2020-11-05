@@ -5,10 +5,18 @@
  */
 package Business.DeliveryMan;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author harold
  */
 public class DeliveryManDirectory {
-    
+        private List<DeliveryMan> deliveryManList;
+
+
+    public DeliveryManDirectory(){
+               deliveryManList = new ArrayList<DeliveryMan>(); 
+    }
 }

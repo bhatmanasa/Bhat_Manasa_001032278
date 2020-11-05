@@ -5,10 +5,19 @@
  */
 package Business.Customer;
 
+import Business.DeliveryMan.DeliveryMan;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author harold
  */
 public class CustomerDirectory {
-    
+        private List<Customer> customerList;
+
+
+    public CustomerDirectory(){
+               customerList = new ArrayList<Customer>(); 
+    }
 }

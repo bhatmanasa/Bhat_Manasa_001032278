@@ -11,14 +11,16 @@ import java.util.Date;
  *
  * @author raunak
  */
-public abstract class WorkRequest {
+public class WorkRequest {
 
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
+    private String result;
     private Date requestDate;
     private Date resolveDate;
+    private int orderNum;
     
     public WorkRequest(){
         requestDate = new Date();
@@ -32,6 +34,14 @@ public abstract class WorkRequest {
         this.message = message;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+    
     public UserAccount getSender() {
         return sender;
     }
@@ -40,6 +50,14 @@ public abstract class WorkRequest {
         this.sender = sender;
     }
 
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
+    }
+    
     public UserAccount getReceiver() {
         return receiver;
     }
