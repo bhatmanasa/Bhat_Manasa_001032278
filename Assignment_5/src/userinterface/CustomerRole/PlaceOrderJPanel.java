@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 /**
@@ -44,6 +45,8 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         this.business = business;
         prevRestaurant = "";
         totalPrice = 0.00;
+        menuTree();
+        valueLabel.setText(business.getEnterprise().getName());
     }
 
     /**
@@ -67,6 +70,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         addtoCartButton6 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         orderTable = new javax.swing.JTable();
+        txtNewQuantity = new javax.swing.JTextField();
         btnModifyQuantity = new javax.swing.JButton();
         btnPlaceOrder = new javax.swing.JButton();
         btnRemoveOrderItem = new javax.swing.JButton();
@@ -80,11 +84,9 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
-        quantitySpinnerMod = new javax.swing.JSpinner();
+        valueLabel = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTree1);
-
-        setPreferredSize(new java.awt.Dimension(900, 600));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Restaurant");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("BiriyaniHouse");
@@ -180,8 +182,8 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +216,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -222,6 +224,11 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane3.setViewportView(orderTable);
+        if (orderTable.getColumnModel().getColumnCount() > 0) {
+            orderTable.getColumnModel().getColumn(0).setResizable(false);
+            orderTable.getColumnModel().getColumn(1).setResizable(false);
+            orderTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         btnModifyQuantity.setText("Modify Quantity");
         btnModifyQuantity.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +254,6 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Size");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("PLACE YOUR ORDER!");
 
         backJButton.setText("<<Back");
@@ -265,76 +271,83 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Please choose foods from options to the left!");
 
-        quantitySpinnerMod.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        valueLabel.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addComponent(btnPlaceOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(149, 149, 149)
                         .addComponent(jLabel6)
                         .addGap(81, 81, 81)
                         .addComponent(jLabel5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(restText, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addComponent(foodText, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(foodText, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(96, 96, 96))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModifyQuantity))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addComponent(addtoCartButton6))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel9)
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel8)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnRemoveOrderItem)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(backJButton))
+                                .addComponent(backJButton)
+                                .addGap(85, 85, 85)
+                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel1))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(174, 174, 174)
-                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addComponent(quantitySpinnerMod, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnModifyQuantity)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRemoveOrderItem))))
+                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(btnPlaceOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(jLabel2)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(backJButton)
-                    .addComponent(jLabel1))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(backJButton)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(16, 16, 16)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
@@ -352,9 +365,9 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModifyQuantity)
-                    .addComponent(btnRemoveOrderItem)
-                    .addComponent(quantitySpinnerMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRemoveOrderItem))
                 .addGap(18, 18, 18)
                 .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -367,7 +380,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +389,18 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-       public void refreshOrderTable(){
+    public void menuTree(){
+      DefaultMutableTreeNode node = business.getRestaurantDirectory().getMenunode();
+
+      
+      DefaultTreeModel menumodel = new DefaultTreeModel(node);
+      menuTree.setModel(menumodel);
+   
+              
+            menumodel.reload(node);
+      
+     }  
+    public void refreshOrderTable(){
         DefaultTableModel model = (DefaultTableModel)orderTable.getModel();
         model.setRowCount(0);
         Order order = business.getOrder();
@@ -466,7 +490,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row to Modify!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        int fetchQty = (Integer)quantitySpinnerMod.getValue();
+        int fetchQty = (Integer)quantitySpinner.getValue();
         if(fetchQty <= 0){
             JOptionPane.showMessageDialog(null, "Quantity cannot be less than or equal to zero!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -482,17 +506,24 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             business.getOrder().setTotalPrice(totalPrice);
             totalPrice = 0.0;
             business.getOrder().setCustId(userAccount.getUsername());
-            business.getOrder().setStatus("OrderPlaced successfully!");
+            business.getOrder().setStatus("OrderPlaced");
+            business.getOrder().setRestaurantName(prevRestaurant);
             business.getMoc().addMoc(business.getOrder());
-            prevRestaurant="";
+            
+
             
             WorkRequest w = new WorkRequest();
             w.setOrderNum(business.getOrder().getOrderNum());
             w.setSender(userAccount);
             w.setStatus("OrderPlaced");
+            
             userAccount.getWorkQueue().addWorkRequest(w);
+            business.getWorkQueue().addWorkRequest(w);
+                        prevRestaurant="";
             
-            
+            restText.setText("");
+            foodText.setText("");
+            sizeText.setText("");
             JOptionPane.showMessageDialog(null, "Order placed Successfully!");
             business.setOrder(new Order());
             refreshOrderTable();
@@ -501,10 +532,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "No orders placed!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-       
-       for(Order O: business.getMoc().getMoc()){
-           System.out.println(O);
-       }
+      
 
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
@@ -586,8 +614,9 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JTree menuTree;
     private javax.swing.JTable orderTable;
     private javax.swing.JSpinner quantitySpinner;
-    private javax.swing.JSpinner quantitySpinnerMod;
     private javax.swing.JTextField restText;
     private javax.swing.JTextField sizeText;
+    private javax.swing.JTextField txtNewQuantity;
+    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

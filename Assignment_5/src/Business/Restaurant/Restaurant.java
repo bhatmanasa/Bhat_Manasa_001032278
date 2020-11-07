@@ -5,6 +5,7 @@
  */
 package Business.Restaurant;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,10 +18,16 @@ public class Restaurant {
     private int managerID;
     private Map<String,Double> menuMap;
     private String location;
+    private String address;
+    private int phone;
+    private Date createDate;
+    private Date updateDate;
+    
 
     public Restaurant(String name,String location) {
         this.name = name;
         this.location=location;
+        setCreateDate();
         menuMap = new HashMap<String,Double>();
     }
 
@@ -54,6 +61,38 @@ public class Restaurant {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate() {
+        this.createDate = new Date();
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     @Override

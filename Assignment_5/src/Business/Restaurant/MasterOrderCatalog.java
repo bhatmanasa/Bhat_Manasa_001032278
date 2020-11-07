@@ -29,4 +29,14 @@ public class MasterOrderCatalog {
     public void addMoc(Order o) {
         moc.add(o);
     }
+    
+    
+    public String getRestaurantName(int orderNumber){
+        for(Order o: moc){
+            if(o.getOrderNum() == orderNumber){
+                return o.getRestaurantName();
+            }
+        }
+        return null;
+    }
 }

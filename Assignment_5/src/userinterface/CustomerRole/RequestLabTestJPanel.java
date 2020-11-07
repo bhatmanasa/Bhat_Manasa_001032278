@@ -5,13 +5,11 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
-import Business.Organization;
+import Business.Restaurant.Order;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,17 +22,19 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private int workRequest;
+    private WorkRequest workRequest;
     /**
      * Creates new form RequestLabTestJPanel
      */
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem business,int w) {
+    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem business,WorkRequest w) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.userAccount = account;
         this.workRequest = w;
+        
+       valueLabel.setText(business.getEnterprise().getName());
        
     }
 
@@ -85,14 +85,30 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+        WorkRequest w =userAccount.getWorkQueue().getWorkRequest(workRequest);
+        if(w == null){
+         JOptionPane.showMessageDialog(null, "Selected request has already been processed!!\nPlease go back and choose other requests!", "Warning", JOptionPane.WARNING_MESSAGE);
+             return;
+        }else{
         if(messageJTextField.getText().equals("")){
          JOptionPane.showMessageDialog(null, "Please fill in the message for the request!!", "Warning", JOptionPane.WARNING_MESSAGE);
              return;
         }else{
         for(WorkRequest workReq : userAccount.getWorkQueue().getWorkRequestList()){
-            if(workReq.getOrderNum() == workRequest){
+            if(workReq.getOrderNum() == workRequest.getOrderNum()){
                 workReq.setMessage(messageJTextField.getText());
             }
+        }
+         String restaurant = business.getMoc().getRestaurantName(workRequest.getOrderNum());
+            int id = business.getRestaurantDirectory().getManager(restaurant);
+            UserAccount ua = business.getUserAccountDirectory().getUserAccount(id);
+            if(ua != null){
+                ua.getWorkQueue().addWorkRequest(workRequest);
+            }
+                     business.getWorkQueue().updateWorkRequest(workRequest,business.getWorkQueue().getWorkRequestList());  //for sysadmin manager to get the work request
+            userAccount.getWorkQueue().removeWorkRequest(workRequest);
+            messageJTextField.setText("");
+           JOptionPane.showMessageDialog(null, "Message updated and request has been processed!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         }
         

@@ -36,7 +36,7 @@ public class Order {
     public void setOrderItemList(ArrayList<OrderItem> orderItemList) {
         this.orderItemList = orderItemList;
     }
-
+    
     public int getOrderNum() {
         return orderNum;
     }
@@ -91,7 +91,7 @@ public class Order {
     public void setStatus(String Status) {
         this.Status = Status;
     }
-    
+
 
     @Override
     public String toString() {

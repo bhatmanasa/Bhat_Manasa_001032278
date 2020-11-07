@@ -89,4 +89,10 @@ public class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(orderNum);
+    }
+    
 }

@@ -4,8 +4,14 @@
  */
 package userinterface.DeliveryManRole;
 
+import Business.EcoSystem;
+import Business.Restaurant.Order;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -16,12 +22,20 @@ import javax.swing.JPanel;
 
 public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
+    private JPanel userProcessContainer;
+    private UserAccount userAccount;
+    private EcoSystem business;
+    private WorkRequest workRequest;
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-    public ProcessWorkRequestJPanel(JPanel userProcessContainer) {
+    public ProcessWorkRequestJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem business,WorkRequest w) {
         initComponents();
+        this.business = business;
+        this.userAccount = userAccount;
+        this.userProcessContainer = userProcessContainer;
+        this.workRequest = w;
+         valueLabel.setText(business.getEnterprise().getName());
         
     }
 
@@ -38,6 +52,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         resultJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
+        valueLabel = new javax.swing.JLabel();
+        enterpriseLabel = new javax.swing.JLabel();
 
         submitJButton.setText("Submit Result");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +70,11 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+
+        valueLabel.setText("jLabel1");
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("EnterPrise :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -73,11 +94,23 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                         .addComponent(submitJButton)
                         .addGap(63, 63, 63))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(valueLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(valueLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -102,13 +135,41 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-       
+        WorkRequest w =userAccount.getWorkQueue().getWorkRequest(workRequest);
+        if(w == null){
+         JOptionPane.showMessageDialog(null, "Selected request has already been processed!!\nPlease go back and choose other requests!", "Warning", JOptionPane.WARNING_MESSAGE);
+             return;
+        }else{
+        if(resultJTextField.getText().equals("")){
+         JOptionPane.showMessageDialog(null, "Please fill in the message for the request!!", "Warning", JOptionPane.WARNING_MESSAGE);
+             return;
+        }else{
+        for(WorkRequest workReq : userAccount.getWorkQueue().getWorkRequestList()){
+            if(workReq.getOrderNum() == workRequest.getOrderNum()){
+                workReq.setResult(resultJTextField.getText());
+                workReq.setResolveDate(new Date());
+            }
+        }
+         String restaurant = business.getMoc().getRestaurantName(workRequest.getOrderNum());
+         for(Order o:business.getMoc().getMoc() ){
+             if(o.getOrderNum() == workRequest.getOrderNum()){
+                 o.setStatus("Delivered");
+             }
+         }
+                     business.getWorkQueue().updateWorkRequest(workRequest,business.getWorkQueue().getWorkRequestList());  //for sysadmin manager to get the work request
+            userAccount.getWorkQueue().removeWorkRequest(workRequest);
+            resultJTextField.setText("");
+           JOptionPane.showMessageDialog(null, "Result updated and request has been processed!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        }       
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField resultJTextField;
     private javax.swing.JButton submitJButton;
+    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

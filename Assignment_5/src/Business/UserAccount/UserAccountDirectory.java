@@ -64,4 +64,12 @@ public class UserAccountDirectory {
         userAccountList.remove(useraccount);
         }
     }
+    public UserAccount getUserAccount(int employeeId){
+        for(UserAccount ua:userAccountList){
+            if(ua.getEmployee().getId() == employeeId){
+                return ua;
+            }
+        }
+        return null;
+    }
 }

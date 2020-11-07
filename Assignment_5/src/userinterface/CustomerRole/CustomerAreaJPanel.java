@@ -32,7 +32,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.userAccount = account;
-        //valueLabel.setText(enterprise.getName());
+        valueLabel.setText(business.getEnterprise().getName());
         populateRequestTable();
     }
     
@@ -42,8 +42,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         List<WorkRequest> requestList = userAccount.getWorkQueue().getWorkRequestList();
         for(WorkRequest req: requestList){
             Object row[] = new Object[8];
-                 row[0] = req.getRequestDate();
-                 row[1] = req.getOrderNum();
+                 row[0] = req;
+                 row[1] = req.getRequestDate();
             
             if(req.getReceiver() == null){
                  row[2] = "";
@@ -199,9 +199,10 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         int row = workRequestJTable.getSelectedRow();
         if(row<0){
             JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }        
-        int order = (Integer)workRequestJTable.getValueAt(row, 1);
-        RequestLabTestJPanel reqpanel = new RequestLabTestJPanel(userProcessContainer,userAccount,business,order);
+        WorkRequest w= (WorkRequest)workRequestJTable.getValueAt(row, 0);
+        RequestLabTestJPanel reqpanel = new RequestLabTestJPanel(userProcessContainer,userAccount,business,w);
         userProcessContainer.add("PlaceOrderJPanel",reqpanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
