@@ -4,6 +4,8 @@
  */
 package Business.Employee;
 
+import java.util.Date;
+
 /**
  *
  * @author raunak
@@ -12,15 +14,21 @@ public class Employee {
     
     private String name;
     private int id;
+    private Date createDate;
     private static int count = 1;
 
     public Employee() {
         id = count;
         count++;
+        createDate = new Date();
     }
 
     public int getId() {
         return id;
+    }
+
+    public Date getCreateDate() {
+       return createDate;
     }
 
     public void setName(String name) {

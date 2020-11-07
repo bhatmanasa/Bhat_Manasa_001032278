@@ -6,6 +6,7 @@
 package Business.Customer;
 
 import Business.DeliveryMan.DeliveryMan;
+import Business.Employee.Employee;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,4 +21,37 @@ public class CustomerDirectory {
     public CustomerDirectory(){
                customerList = new ArrayList<Customer>(); 
     }
+
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
+    
+    public Customer createCustomer(Customer customer){
+        customerList.add(customer);
+        return customer;
+    } 
+        public void removeCustomer(int id){
+        for(Customer c: customerList){
+            if(c.getEmpId() == id){
+                customerList.remove(c);
+            }
+        }
+    } 
+        public void updateCustomer(Customer customer,int id){
+       for(Customer c: customerList){
+        if(c.getEmpId() == id){
+             c.setName(customer.getName());
+             c.setAddress(customer.getAddress());
+             c.setEmpId(customer.getEmpId());
+             c.setPhone(customer.getPhone());
+             c.setUpdateDate(customer.getUpdateDate());
+             c.setPassword(customer.getPassword());
+        }
+       }
+    } 
+    
 }
