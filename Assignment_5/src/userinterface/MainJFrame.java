@@ -10,6 +10,7 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -52,12 +53,15 @@ public class MainJFrame extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         lblUserName = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 400));
 
         jSplitPane1.setMaximumSize(new java.awt.Dimension(900, 600));
         jSplitPane1.setPreferredSize(new java.awt.Dimension(800, 400));
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -66,9 +70,16 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("User Name");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
+
+        loginJLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        loginJLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         logoutJButton.setText("Logout");
         logoutJButton.setEnabled(false);
@@ -78,8 +89,12 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        lblUser.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
         lblUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
+        lblUserName.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblUserName.setForeground(new java.awt.Color(255, 255, 255));
         lblUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -131,7 +146,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
+        container.setBackground(new java.awt.Color(0, 153, 204));
         container.setLayout(new java.awt.CardLayout());
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Welcome To TastyEats!");
+        container.add(jLabel3, "card2");
+
         jSplitPane1.setRightComponent(container);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -177,6 +199,7 @@ public class MainJFrame extends javax.swing.JFrame {
         lblUserName.setText("");
         container.removeAll();
         JPanel blankJP = new JPanel();
+        blankJP.setBackground(Color.CYAN);
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
@@ -221,6 +244,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblUser;

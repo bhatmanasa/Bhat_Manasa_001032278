@@ -34,6 +34,7 @@ public class ViewOrderJPanel extends javax.swing.JPanel {
         populateTable();
         
     }
+
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)orderTable.getModel();
         model.setRowCount(0);
@@ -71,6 +72,9 @@ public class ViewOrderJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         orderTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Order Details");
 
         backJButton.setText("<<Back");

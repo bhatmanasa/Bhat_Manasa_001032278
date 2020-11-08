@@ -76,6 +76,9 @@ public class ViewRestaurantJPanel extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Restaurant Details");
 
         backJButton.setText("<<Back");

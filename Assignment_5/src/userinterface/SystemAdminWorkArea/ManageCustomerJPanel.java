@@ -57,6 +57,8 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -112,6 +114,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Manage Customer");
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

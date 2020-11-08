@@ -98,6 +98,8 @@ public class ManageDelivJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -147,6 +149,7 @@ public class ManageDelivJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Manage Delivery Man");
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -183,7 +186,7 @@ public class ManageDelivJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(backJButton)
-                        .addGap(34, 34, 34)
+                        .addGap(83, 83, 83)
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(valueLabel))
@@ -223,7 +226,7 @@ public class ManageDelivJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

@@ -9,8 +9,11 @@ import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import static java.lang.Boolean.TRUE;
 import java.util.Enumeration;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -171,6 +174,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         tree = new javax.swing.JTree();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
         btnAdd.setText("Add Item");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,8 +190,10 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Enter FoodName,Size and Price to Add Item");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Select from the left menu to Remove Item");
 
         jLabel3.setText("Food Name:");
@@ -246,8 +253,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(btnSave)))
-                .addContainerGap(152, Short.MAX_VALUE))
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,12 +285,15 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemove)
                 .addGap(34, 34, 34)
-                .addComponent(btnSave)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
 
+        tree.setBackground(new java.awt.Color(153, 0, 51));
+        tree.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tree.setForeground(new java.awt.Color(255, 255, 255));
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         tree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         tree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
@@ -299,7 +309,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,12 +388,14 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                          JOptionPane.showMessageDialog(null, "Food, Size and Price are Mandatory for adding items!!", "Warning", JOptionPane.WARNING_MESSAGE);       
                           return;
         }
-        try{
-            Double price = Double.parseDouble(priceText.getText());
-        }catch(NumberFormatException e){
-                         JOptionPane.showMessageDialog(null, "Please enter Price in decimal format only!!", "Warning", JOptionPane.WARNING_MESSAGE);       
-                          return;            
-        }
+            String priceRegex ="[0-9]+\\.[0-9]{2,}";
+            Pattern namePattern = Pattern.compile(priceRegex);
+            Matcher checkFirstName = namePattern.matcher(priceText.getText());
+            boolean checkNameMatch = checkFirstName.matches();
+            if(!(checkNameMatch == TRUE)){
+                JOptionPane.showMessageDialog(null, "Please enter Price in decimal format only!!\n(mininmum 2 digits after decimal)", "Warning", JOptionPane.WARNING_MESSAGE);       
+                          return;
+            }
         model = (DefaultTreeModel) tree.getModel();
         DefaultMutableTreeNode selectedNode;
         selectedNode = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();

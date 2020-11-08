@@ -108,6 +108,8 @@ public class AssignOrderJPanel extends javax.swing.JPanel {
         delivComboBox = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
         workRequestDelivJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -136,6 +138,7 @@ public class AssignOrderJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestDelivJTable);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Manage Order");
 
         backJButton.setText("<<Back");
@@ -167,6 +170,8 @@ public class AssignOrderJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Check DeliveryMen WorkQueue to Assign Request");
 
         btnCheckQueue.setText("CheckQueue");
