@@ -39,6 +39,7 @@ public abstract class Role {
             UserAccount account,  
             EcoSystem business);
 
+    public abstract String GetRole();
     @Override
     public String toString() {
         return this.getClass().getName();

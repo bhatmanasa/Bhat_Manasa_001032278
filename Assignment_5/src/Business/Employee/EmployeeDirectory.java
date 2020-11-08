@@ -28,6 +28,14 @@ public class EmployeeDirectory {
         employeeList.add(employee);
         return employee;
     }
+     public void updateEmployee(Employee e){
+        for(Employee emp : employeeList){
+            if(emp.getId() == e.getId()){
+                emp.setName(e.getName());
+                emp.setUpdateDate(e.getUpdateDate());
+            }
+        }
+    }   
         public void removeEmployee(int id){
             Employee employee = null;
        for(Employee e: employeeList){

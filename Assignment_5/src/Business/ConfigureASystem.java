@@ -1,5 +1,6 @@
 package Business;
 
+import Business.Customer.Customer;
 import Business.Employee.Employee;
 import Business.Restaurant.Restaurant;
 import Business.Role.AdminRole;
@@ -8,6 +9,7 @@ import Business.Role.DeliverManRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -52,7 +54,16 @@ public class ConfigureASystem {
         UserAccount ua6 = system.getUserAccountDirectory().createUserAccount("deliv2", "deliv", employee6, new DeliverManRole());
         UserAccount ua7 = system.getUserAccountDirectory().createUserAccount("deliv3", "deliv", employee7, new DeliverManRole());
        // List<Restaurant> rList1 = new ArrayList<Restaurant>();
-
+        Customer customer = new Customer();
+            customer.setAddress("123 street");
+            customer.setPhone(1234567890);
+            customer.setDob("12/12/2020");
+            customer.setName("Man");
+            customer.setPassword("cust");
+            customer.setUsername("cust");
+            customer.setUpdateDate(new Date());
+            customer.setEmpId(employee3.getId());
+            system.getCustomerDirectory().createCustomer(customer);
 
 
  
@@ -60,10 +71,6 @@ public class ConfigureASystem {
         Map m = r1.getMenuMap();
         m.put("RavioliSmall", 12.00);
         m.put("RavioliLarge", 15.00);
-         m.put("PastaSmall", 12.00);
-        m.put("PastaLarge", 15.00);
-        m.put("SpeghettiSmall", 12.00);
-        m.put("SpeghettiLarge", 15.00);
         m.put("PizzaSmall", 10.00);
         m.put("PizzaMedium", 14.00);
         m.put("PizzaLarge", 18.00);

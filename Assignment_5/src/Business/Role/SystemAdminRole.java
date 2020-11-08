@@ -20,5 +20,9 @@ public class SystemAdminRole extends Role{
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         return new SystemAdminWorkAreaJPanel(userProcessContainer,account, system);
     }
-    
+    @Override
+        public String GetRole(){
+        String role = Role.RoleType.SysAdmin.getValue();
+        return role;
+    }
 }

@@ -5,6 +5,7 @@
 package Business.Role;
 
 import Business.EcoSystem;
+import static Business.Organization.Type.RestaurantAdmin;
 import Business.UserAccount.UserAccount;
 import userinterface.RestaurantAdminRole.AdminWorkAreaJPanel;
 import javax.swing.JPanel;
@@ -20,7 +21,14 @@ public class AdminRole extends Role{
         return new AdminWorkAreaJPanel(userProcessContainer, account,business);
     }
 
+    @Override
+    public String GetRole(){
+        String role = Role.RoleType.RestaurantAdmin.getValue();
+        return role;
+    }
 
+
+     
 
     
     

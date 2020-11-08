@@ -20,5 +20,9 @@ public class DeliverManRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         return new DeliveryManWorkAreaJPanel(userProcessContainer,account,business);//To change body of generated methods, choose Tools | Templates.
     }
-    
+    @Override
+        public String GetRole(){
+        String role = Role.RoleType.DeliveryMan.getValue();
+        return role;
+    }
 }

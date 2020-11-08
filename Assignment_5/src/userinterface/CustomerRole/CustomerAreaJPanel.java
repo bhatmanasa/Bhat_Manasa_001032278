@@ -87,6 +87,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(800, 400));
+
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -140,6 +142,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
 
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         valueLabel.setText("<value>");
 
         jButton1.setText("ORDER NOW!");

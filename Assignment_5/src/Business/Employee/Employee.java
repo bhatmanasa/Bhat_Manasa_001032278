@@ -15,6 +15,7 @@ public class Employee {
     private String name;
     private int id;
     private Date createDate;
+    private Date updateDate;
     private static int count = 1;
 
     public Employee() {
@@ -26,6 +27,15 @@ public class Employee {
     public int getId() {
         return id;
     }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+    
 
     public Date getCreateDate() {
        return createDate;

@@ -114,6 +114,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Manage Customer");
 
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         valueLabel.setText("jLabel2");
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -224,6 +225,10 @@ public void populateTable(){
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        CreateCustomerJPanel createCustpanel = new CreateCustomerJPanel(userProcessContainer,userAccount,ecosystem);
+        userProcessContainer.add("CreateCustomerJPanel",createCustpanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

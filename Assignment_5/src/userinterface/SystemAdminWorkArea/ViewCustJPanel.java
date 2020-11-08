@@ -9,7 +9,9 @@ import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import static java.lang.Boolean.TRUE;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +25,7 @@ import javax.swing.border.LineBorder;
 
 /**
  *
- * @author karthik
+ * @author manasa
  */
 public class ViewCustJPanel extends javax.swing.JPanel {
 
@@ -84,6 +86,7 @@ public class ViewCustJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         dobText = new javax.swing.JTextField();
 
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         valueLabel.setText("jLabel2");
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -173,6 +176,11 @@ public class ViewCustJPanel extends javax.swing.JPanel {
         usernameText.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         backJButton.setText("<<Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("DateOfBirth:");
@@ -508,12 +516,25 @@ public class ViewCustJPanel extends javax.swing.JPanel {
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextActionPerformed
+
+    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+        // TODO add your handling code here:
+                  userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageCustomerJPanel dwjp = (ManageCustomerJPanel) component;
+        dwjp.populateTable();
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButtonActionPerformed
     public void populateFields(){
         nameText.setText(customer.getName());
         phoneText.setText(String.valueOf(customer.getPhone()));
         IDText.setText(String.valueOf(customer.getEmpId()));
         addressText.setText(customer.getAddress());
         pwdText.setText(customer.getPassword());
+        emailText.setText(customer.getEmail());
+        dobText.setText(customer.getDob());
         usernameText.setText(customer.getUsername());
         createText.setText(String.valueOf(customer.getCreateDate()));
         if(customer.getUpdateDate() == null){
@@ -522,6 +543,9 @@ public class ViewCustJPanel extends javax.swing.JPanel {
             updateText.setText(String.valueOf(customer.getUpdateDate()));
         }
         oldUser = customer.getUsername();
+        updateText.setEnabled(false);
+        createText.setEnabled(false);
+        IDText.setEnabled(false);
         
     }
 

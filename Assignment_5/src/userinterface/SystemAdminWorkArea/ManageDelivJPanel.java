@@ -20,27 +20,64 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author manasa
  */
-public class ManageRestaurantJPanel extends javax.swing.JPanel {
+public class ManageDelivJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageRestaurantJPanel
+     * Creates new form ManageDelivJPanel
      */
-       private JPanel userProcessContainer;
+    
+           private JPanel userProcessContainer;
     private UserAccount userAccount;
     private EcoSystem ecosystem;
     private Restaurant restaurant;
     
-    public ManageRestaurantJPanel(JPanel userProcessContainer,UserAccount userAccount,EcoSystem ecosystem,Restaurant r) {
+    public ManageDelivJPanel(JPanel userProcessContainer,UserAccount userAccount,EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
-        this.restaurant = r;
         valueLabel.setText(ecosystem.getEnterprise().getName());
         populateTable();
+        
     }
+   private void populateTable(){
+                DefaultTableModel model = (DefaultTableModel)employeeTable.getModel();
+        model.setRowCount(0);
+                 List<UserAccount> uaList = ecosystem.getUserAccountDirectory().getUserAccountList();
+        List<Employee> empList = ecosystem.getEmployeeDirectory().getEmployeeList();
+        for(Employee e: empList){    
+            boolean delivCheck = false;
+            for(UserAccount ua: uaList){
+            if(ua.getEmployee().getId() == e.getId()){
+                if(ua.getRole().GetRole().equalsIgnoreCase("Delivery")){
+                    delivCheck = true;
+                }
+            }
+        }
+            if(delivCheck){
+       
 
-
+           Object row[] = new Object[8];
+                 row[0] = e;
+                 row[1] = e.getId();
+                 boolean found = false;
+        for(UserAccount ua: uaList){
+            if(ua.getEmployee().getId() == e.getId()){
+                found = true;
+                  row[2] = ua.getUsername();
+                 row[4] = ua.getRole().GetRole();
+            }
+        }
+        if(found = false){
+                 row[2] = "";
+                 row[4] = "Staff";
+        }
+                 row[3] = e.getCreateDate();
+            
+            model.addRow(row);                    
+        }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,13 +125,6 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(employeeTable);
-        if (employeeTable.getColumnModel().getColumnCount() > 0) {
-            employeeTable.getColumnModel().getColumn(0).setResizable(false);
-            employeeTable.getColumnModel().getColumn(1).setResizable(false);
-            employeeTable.getColumnModel().getColumn(2).setResizable(false);
-            employeeTable.getColumnModel().getColumn(3).setResizable(false);
-            employeeTable.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -103,21 +133,21 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnView.setText("View Employee");
+        btnView.setText("View DeliveryMan");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
 
-        btnAdd.setText("Add Employee");
+        btnAdd.setText("Add DeliveryMan");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Manage Restaurant Employees");
+        jLabel1.setText("Manage Delivery Man");
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         valueLabel.setText("jLabel2");
@@ -160,7 +190,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(193, 193, 193)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +217,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 624, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -201,49 +231,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-    public void populateTable(){
-                DefaultTableModel model = (DefaultTableModel)employeeTable.getModel();
-        model.setRowCount(0);
-        List<Employee> empList = ecosystem.getEmployeeDirectory().getEmployeeList();
-        for(Employee e: empList){
-            boolean custCheck = false;
-            List<UserAccount> uaList = ecosystem.getUserAccountDirectory().getUserAccountList();
-         for(UserAccount ua: uaList){
-            if(ua.getEmployee().getId() == e.getId()){
-                if(ua.getRole().GetRole().equals("Customer")){
-                    custCheck = true;
-                }
-                if(ua.getRole().GetRole().equals("RestaurantAdmin")){
-                    if(ua.getEmployee().getId() != restaurant.getManagerID()){
-                         custCheck = true;
-                    }
-                }
-            }
-        }
-         if(custCheck == false){
 
-           Object row[] = new Object[8];
-                 row[0] = e;
-                 row[1] = e.getId();
-                 boolean found = false;
-         
-        for(UserAccount ua: uaList){
-            if(ua.getEmployee().getId() == e.getId()){
-                found = true;
-                  row[2] = ua.getUsername();
-                 row[4] = ua.getRole().GetRole();
-            }
-        }
-        if(found == false){
-                 row[2] = "";
-                 row[4] = "Staff";
-        }
-                 row[3] = e.getCreateDate();
-            
-            model.addRow(row);                    
-        }
-        }
-    }
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRow= employeeTable.getSelectedRow();
@@ -251,32 +239,32 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         if(selectedRow >= 0){
             int confirmed = JOptionPane.showConfirmDialog(null, "Are you Sure you want to delete the employee record?","Confirm Delete",JOptionPane.YES_NO_OPTION);
             if(confirmed == JOptionPane.YES_OPTION){
-                         List<UserAccount> uaList = ecosystem.getUserAccountDirectory().getUserAccountList();
+                List<UserAccount> uaList = ecosystem.getUserAccountDirectory().getUserAccountList();
                 UserAccount user = null;
                 Employee eObj  = (Employee)employeeTable.getValueAt(selectedRow, 0);
-                        for(UserAccount ua: uaList){
-            if(ua.getEmployee().getId() == eObj.getId()){
-                user = ua;
-            }
-                        } 
-                        if(user != null){
-                ecosystem.getUserAccountDirectory().removeUserAccount(user.getUsername());
-                ecosystem.getEmployeeDirectory().removeEmployee(eObj.getId());
-                DeliveryMan deliv = null;
-                for(DeliveryMan d: ecosystem.getDeliveryManDirectory().getDeliveryManList()){
-                    if(d.getEmpId() == eObj.getId()){
-                        deliv = d;
+                for(UserAccount ua: uaList){
+                    if(ua.getEmployee().getId() == eObj.getId()){
+                        user = ua;
                     }
                 }
-                if(deliv!= null){
-                    ecosystem.getDeliveryManDirectory().removeDeliveryMan(deliv);
-                }
-                JOptionPane.showMessageDialog(null,"Employee has been removed!");
-                populateTable();
-                        }else{
-                            ecosystem.getEmployeeDirectory().removeEmployee(eObj.getId());
-                            JOptionPane.showMessageDialog(null,"Employee has been removed!");
+                if(user != null){
+                    ecosystem.getUserAccountDirectory().removeUserAccount(user.getUsername());
+                    ecosystem.getEmployeeDirectory().removeEmployee(eObj.getId());
+                    DeliveryMan deliv = null;
+                    for(DeliveryMan d: ecosystem.getDeliveryManDirectory().getDeliveryManList()){
+                        if(d.getEmpId() == eObj.getId()){
+                            deliv = d;
                         }
+                    }
+                    if(deliv!= null){
+                        ecosystem.getDeliveryManDirectory().removeDeliveryMan(deliv);
+                    }
+                    JOptionPane.showMessageDialog(null,"Employee has been removed!");
+                    populateTable();
+                }else{
+                    ecosystem.getEmployeeDirectory().removeEmployee(eObj.getId());
+                    JOptionPane.showMessageDialog(null,"Employee has been removed!");
+                }
             }
         }else{
             JOptionPane.showMessageDialog(null,"Please select an employee profile!");
@@ -293,16 +281,15 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
         Employee e= (Employee)employeeTable.getValueAt(row, 0);
 
-       ViewEmployeeJPanel viewemppanel = new ViewEmployeeJPanel(userProcessContainer,userAccount,ecosystem,e);
+        ViewEmployeeJPanel viewemppanel = new ViewEmployeeJPanel(userProcessContainer,userAccount,ecosystem,e);
         userProcessContainer.add("ViewEmployeeJPanel",viewemppanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-               CreateEmployeeJPanel createmppanel = new CreateEmployeeJPanel(userProcessContainer,userAccount,ecosystem,restaurant);
+        CreateEmployeeJPanel createmppanel = new CreateEmployeeJPanel(userProcessContainer,userAccount,ecosystem,true);
         userProcessContainer.add("CreateEmployeeJPanel",createmppanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

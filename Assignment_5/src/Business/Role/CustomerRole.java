@@ -19,6 +19,9 @@ public class CustomerRole extends Role{
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         return new CustomerAreaJPanel(userProcessContainer, account,business);
     }
-    
-    
+    @Override
+        public String GetRole(){
+        String role = Role.RoleType.Customer.getValue();
+        return role;
+    }
 }
