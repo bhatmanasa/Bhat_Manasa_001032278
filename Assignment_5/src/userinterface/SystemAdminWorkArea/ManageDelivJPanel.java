@@ -40,7 +40,7 @@ public class ManageDelivJPanel extends javax.swing.JPanel {
         populateTable();
         
     }
-   private void populateTable(){
+   public void populateTable(){
                 DefaultTableModel model = (DefaultTableModel)employeeTable.getModel();
         model.setRowCount(0);
                  List<UserAccount> uaList = ecosystem.getUserAccountDirectory().getUserAccountList();
@@ -284,7 +284,7 @@ public class ManageDelivJPanel extends javax.swing.JPanel {
 
         Employee e= (Employee)employeeTable.getValueAt(row, 0);
 
-        ViewEmployeeJPanel viewemppanel = new ViewEmployeeJPanel(userProcessContainer,userAccount,ecosystem,e);
+        ViewEmployeeJPanel viewemppanel = new ViewEmployeeJPanel(userProcessContainer,userAccount,ecosystem,e,true);
         userProcessContainer.add("ViewEmployeeJPanel",viewemppanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

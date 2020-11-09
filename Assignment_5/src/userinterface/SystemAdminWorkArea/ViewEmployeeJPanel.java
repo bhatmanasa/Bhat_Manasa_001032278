@@ -34,12 +34,25 @@ public class ViewEmployeeJPanel extends javax.swing.JPanel {
     private Business.EcoSystem ecosystem;
     private Employee employee;
     private String oldUser;
+    private boolean delivCheck = false;
     public ViewEmployeeJPanel(JPanel userProcessContainer,UserAccount userAccount,Business.EcoSystem ecosystem,Employee e) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.ecosystem = ecosystem;
         this.employee = e;
+        valueLabel.setText(ecosystem.getEnterprise().getName());
+        populateFields();
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+    }
+        public ViewEmployeeJPanel(JPanel userProcessContainer,UserAccount userAccount,Business.EcoSystem ecosystem,Employee e,boolean delivCheck) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.employee = e;
+        this.delivCheck = delivCheck;
         valueLabel.setText(ecosystem.getEnterprise().getName());
         populateFields();
         btnSave.setEnabled(false);
@@ -443,13 +456,23 @@ public class ViewEmployeeJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         // TODO add your handling code here:
-                 userProcessContainer.remove(this);
+        if(delivCheck == true){
+                             userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageDelivJPanel dwjp = (ManageDelivJPanel) component;
+        dwjp.populateTable();
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        }else{
+                userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ManageRestaurantJPanel dwjp = (ManageRestaurantJPanel) component;
         dwjp.populateTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        }
     }//GEN-LAST:event_backJButtonActionPerformed
 
 

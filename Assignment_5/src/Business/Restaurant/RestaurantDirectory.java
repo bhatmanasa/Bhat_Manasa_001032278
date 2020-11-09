@@ -65,7 +65,6 @@ public class RestaurantDirectory {
     }
     
     public void setMenuNode(DefaultMutableTreeNode node){
-        System.out.println("reachedhere!");
         this.node = node;
     }
     

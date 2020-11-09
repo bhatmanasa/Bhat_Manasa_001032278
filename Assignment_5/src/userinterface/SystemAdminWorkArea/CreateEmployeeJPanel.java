@@ -429,6 +429,15 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         // TODO add your handling code here:
+        if(delivCheck == true){
+                             userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageDelivJPanel dwjp = (ManageDelivJPanel) component;
+        dwjp.populateTable();
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        }else{
                 userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
@@ -436,6 +445,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         dwjp.populateTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        }
     }//GEN-LAST:event_backJButtonActionPerformed
 
 
