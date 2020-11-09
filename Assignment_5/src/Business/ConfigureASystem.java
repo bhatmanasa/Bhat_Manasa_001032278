@@ -37,14 +37,14 @@ public class ConfigureASystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
-        Employee employee1 = system.getEmployeeDirectory().createEmployee("ADM");
-        Employee employee2 = system.getEmployeeDirectory().createEmployee("DEL");
-        Employee employee3 = system.getEmployeeDirectory().createEmployee("CST");  
-        Employee employee4 = system.getEmployeeDirectory().createEmployee("ADM");
-        Employee employee5 = system.getEmployeeDirectory().createEmployee("ADM");
-        Employee employee6 = system.getEmployeeDirectory().createEmployee("DL2");
-        Employee employee7 = system.getEmployeeDirectory().createEmployee("DL3");
+        Employee employee = system.getEmployeeDirectory().createEmployee("Rahul");
+        Employee employee1 = system.getEmployeeDirectory().createEmployee("Adam");
+        Employee employee2 = system.getEmployeeDirectory().createEmployee("Denver");
+        Employee employee3 = system.getEmployeeDirectory().createEmployee("Sasha");  
+        Employee employee4 = system.getEmployeeDirectory().createEmployee("Nithi");
+        Employee employee5 = system.getEmployeeDirectory().createEmployee("Tanya");
+        Employee employee6 = system.getEmployeeDirectory().createEmployee("Yan");
+        Employee employee7 = system.getEmployeeDirectory().createEmployee("Noymi");
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("admin1", "admin", employee1, new AdminRole());
         UserAccount ua2 = system.getUserAccountDirectory().createUserAccount("deliv", "deliv", employee2, new DeliverManRole());
@@ -58,7 +58,7 @@ public class ConfigureASystem {
             customer.setAddress("123 street");
             customer.setPhone(1234567890);
             customer.setDob("12/12/2020");
-            customer.setName("Man");
+            customer.setName("Manvi");
             customer.setPassword("cust");
             customer.setUsername("cust");
             customer.setUpdateDate(new Date());

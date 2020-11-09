@@ -290,6 +290,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                  row[5] = "";
             }else{
                  row[5] = req.getResult();
+                 row[6] = req.getResolveDate();
             }
                         model.addRow(row); 
                      }

@@ -465,7 +465,6 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         List<Restaurant> rlist = business.getRestaurantDirectory().getRestaurantList();
         boolean found = false;
         for(Restaurant r:rlist){
-            System.out.println("rest="+r);
             if(r.getName().equals(restText.getText())){
                 Map m =r.getMenuMap();
                 for(Object key : m.keySet()){

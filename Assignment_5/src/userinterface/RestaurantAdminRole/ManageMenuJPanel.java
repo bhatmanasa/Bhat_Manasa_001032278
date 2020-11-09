@@ -113,8 +113,6 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
      
      mainnode = new DefaultMutableTreeNode("Restaurant");
      if(changedNode.toString().equals("Restaurant")){
-                 System.out.println("nextnode="+changedNode.getNextNode());
-        System.out.println("nextchild="+changedNode.getFirstChild());
         changedNode = (DefaultMutableTreeNode)changedNode.getNextNode();
         mainnode.add(changedNode);
      }else{

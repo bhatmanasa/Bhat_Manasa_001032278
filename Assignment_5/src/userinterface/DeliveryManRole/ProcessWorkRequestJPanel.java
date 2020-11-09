@@ -156,12 +156,10 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
          JOptionPane.showMessageDialog(null, "Please fill in the message for the request!!", "Warning", JOptionPane.WARNING_MESSAGE);
              return;
         }else{
-        for(WorkRequest workReq : userAccount.getWorkQueue().getWorkRequestList()){
-            if(workReq.getOrderNum() == workRequest.getOrderNum()){
-                workReq.setResult(resultJTextField.getText());
-                workReq.setResolveDate(new Date());
-            }
-        }
+
+                workRequest.setResult(resultJTextField.getText());
+                workRequest.setResolveDate(new Date());
+
          String restaurant = business.getMoc().getRestaurantName(workRequest.getOrderNum());
          for(Order o:business.getMoc().getMoc() ){
              if(o.getOrderNum() == workRequest.getOrderNum()){
